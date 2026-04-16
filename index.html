@@ -7,23 +7,33 @@ Yassarchive
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 	</head>
+
 	<body class="is-preload">
 
-		<!-- Header -->
-		    <header id="header">
-				<div class="inner">
-					<a href="#" class="image avatar">
-						<img src="images/avatar.jpg" alt="" />
-					</a>
-					<h1 class="fade-in-text">
-						<strong>Welcome to my world of ideas and creativity</strong> — I’m Yasmine, where vision meets expression.</h1>
-    <p class="footer-note">
-      Site & portfolio developed by Yasmine
-    </p>
-				</div>
-			</header>
+		<!-- Header: vaste zijbalk met profiel + intro -->
+		<header id="header">
+			<div class="inner">
+
+				<!-- Profielfoto/avatar bovenaan de sidebar -->
+				<a href="#" class="image avatar">
+					<img src="images/avatar.jpg" alt="" />
+				</a>
+
+				<!-- Titeltekst met fade-in animatie -->
+				<h1 class="fade-in-text">
+					<strong>Welcome to my world of ideas and creativity</strong> — I’m Yasmine, where vision meets expression.
+				</h1>
+
+				<!-- Kleine footer note in header -->
+				<p class="footer-note">
+					Site & portfolio developed by Yasmine
+				</p>
+
+			</div>
+		</header>
+
 <style>
-/* Fade-in effect */
+/* Fade-in effect: laat tekst rustig inschuiven bij laden */
 .fade-in-text {
   opacity: 0;
   transform: translateY(20px);
@@ -31,6 +41,7 @@ Yassarchive
   animation-delay: 0.3s;
 }
 
+/* Animatie definitie voor fade-in van onder naar boven */
 @keyframes fadeInUp {
   to {
     opacity: 1;
@@ -39,147 +50,167 @@ Yassarchive
 }
 </style>
 
-		<!-- Main -->
-			<div id="main">
+		<!-- Main content: rechterkant van de website -->
+		<div id="main">
 
-				<!-- One -->
-					<section id="one">
-						<header class="major">
-							<h2>IT Engineer</h2>
-						</header>
-						<p>Hi, I’m Yasmine, a 25-year-old IT specialist with a passion for leveraging technology to solve complex problems and drive innovation. Over the years, I have honed my skills in various areas of information technology, including software development, system architecture, and network management. This portfolio reflects not only the projects I’ve undertaken but also my commitment to continuous learning and excellence in the ever-evolving tech landscape. I invite you to explore my work and see how I combine technical expertise with creative problem-solving to deliver impactful solutions. Feel free to connect—I’m always eager to collaborate and push the boundaries of what technology can achieve.</p>
-						<ul class="actions">
-							<a href="about.html" class="button">Learn More</a>
-						</ul>
-					</section>
+			<!-- Intro sectie -->
+			<section id="one">
+				<header class="major">
+					<h2>IT Engineer</h2>
+				</header>
 
-				<!-- Two -->
-					<section id="two">
-						<h2>Recent Work</h2>
-						<div class="row">
-							<article class="col-6 col-12-xsmall work-item">
-								<a href="images/fulls/01.jpg" class="image fit thumb"><img src="images/thumbs/01.jpg" alt="" /></a>
-								<h3>Electrical engineering</h3>
-								<p>Circuits, logic gates, digital design.</p>
-							</article>
-							<article class="col-6 col-12-xsmall work-item">
-								<a href="images/fulls/02.jpg" class="image fit thumb"><img src="images/thumbs/02.jpg" alt="" /></a>
-								<h3>Python programming</h3>
-								<p>Projects using Python — automation scripts, data handling, games, etc.</p>
-						</div>
-						<ul class="actions">
-							<a href="portfolio.html" class="button">Learn More</a>
-						</ul>
-					</section>
+				<!-- Korte bio / introductie -->
+				<p>Hi, I’m Yasmine, a 25-year-old IT specialist with a passion for leveraging technology to solve complex problems and drive innovation. Over the years, I have honed my skills in various areas of information technology, including software development, system architecture, and network management. This portfolio reflects not only the projects I’ve undertaken but also my commitment to continuous learning and excellence in the ever-evolving tech landscape. I invite you to explore my work and see how I combine technical expertise with creative problem-solving to deliver impactful solutions. Feel free to connect—I’m always eager to collaborate and push the boundaries of what technology can achieve.</p>
 
-				<!-- Three -->
-					<section id="three">
-						<h2>Get In Touch</h2>
-						<p><i></i>I’m always open to connecting with forward-thinking individuals and teams to explore, innovate, and deliver technology that makes a real impact.</i></p>
-						<div class="row">
-							<div class="col-8 col-12-small">
-								<form action="https://api.web3forms.com/submit" method="POST">
-									<div class="row gtr-uniform gtr-50">
-										<input type="hidden" name="access_key" value="d48e5232-f46c-412e-9744-fb151dbbb144">
-										<div class="col-6 col-12-xsmall"><input type="text" name="name" id="name" placeholder="Name" required /></div>
-										<div class="col-6 col-12-xsmall"><input type="email" name="email" id="email" placeholder="Email" required /></div>
-										<div class="col-12"><textarea name="message" id="message" placeholder="Message" rows="4" required></textarea></div>
-										<ul class="actions">
-											<li><input type="submit" value="Send Message" /></li>
-										</ul>
-									</div>
-								</form>
-								<ul class="actions">
-									
-								</ul>
-							</div>
-							<div class="col-4 col-12-small">
-								<ul class="labeled-icons">
-									<li>
-										<h3 class="icon solid fa-home"><span class="label">Address</span></h3>
-										Breendonkstraat, 2830 Willebroek <br />
-										Antwerp, Belgium
-									</li>
-									<li>
-										<h3 class="icon solid fa-mobile-alt"><span class="label">Phone</span></h3>
-										+32468255970
-									</li>
-									<li>
-										<h3 class="icon solid fa-envelope"><span class="label">Email</span></h3>
-										<a href="#">Inquiries@yassarchive.com</a>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</section>
-				<section id="cv">
-					<h2>Curriculum Vitae</h2>
-					<p>You can download my CV below:</p>
-					<a href="assets/Yassarchive.pdf" download class="button">
-						Download CV
-					</a>
-				</section>
-				
-			</div>
+				<!-- Knop naar about pagina -->
+				<ul class="actions">
+					<a href="about.html" class="button">Learn More</a>
+				</ul>
+			</section>
 
-		<!-- Footer -->
-			<footer id="footer">
-				<div class="inner">
-					<ul class="icons">
-						<li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
-					</ul>
-					<ul class="copyright">
-						<li>&copy; Archive07</li><li>Design: <a href="http://html5up.net">Yasmine</a></li>
-					</ul>
+			<!-- Portfolio / recente projecten -->
+			<section id="two">
+				<h2>Recent Work</h2>
+
+				<div class="row">
+
+					<!-- Project 1 -->
+					<article class="col-6 col-12-xsmall work-item">
+						<a href="images/fulls/01.jpg" class="image fit thumb">
+							<img src="images/thumbs/01.jpg" alt="" />
+						</a>
+						<h3>Electrical engineering</h3>
+						<p>Circuits, logic gates, digital design.</p>
+					</article>
+
+					<!-- Project 2 -->
+					<article class="col-6 col-12-xsmall work-item">
+						<a href="images/fulls/02.jpg" class="image fit thumb">
+							<img src="images/thumbs/02.jpg" alt="" />
+						</a>
+						<h3>Python programming</h3>
+						<p>Projects using Python — automation scripts, data handling, games, etc.</p>
+					</article>
+
 				</div>
-			</footer>
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.poptrox.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+				<!-- Knop naar volledige portfolio -->
+				<ul class="actions">
+					<a href="portfolio.html" class="button">Learn More</a>
+				</ul>
+			</section>
+
+			<!-- Contact sectie -->
+			<section id="three">
+				<h2>Get In Touch</h2>
+
+				<!-- Intro tekst contact -->
+				<p><i></i>I’m always open to connecting with forward-thinking individuals and teams to explore, innovate, and deliver technology that makes a real impact.</i></p>
+
+				<div class="row">
+
+					<!-- Contactformulier -->
+					<div class="col-8 col-12-small">
+						<form action="https://api.web3forms.com/submit" method="POST">
+
+							<div class="row gtr-uniform gtr-50">
+
+								<!-- API key voor form submission -->
+								<input type="hidden" name="access_key" value="d48e5232-f46c-412e-9744-fb151dbbb144">
+
+								<!-- Naam veld -->
+								<div class="col-6 col-12-xsmall">
+									<input type="text" name="name" id="name" placeholder="Name" required />
+								</div>
+
+								<!-- Email veld -->
+								<div class="col-6 col-12-xsmall">
+									<input type="email" name="email" id="email" placeholder="Email" required />
+								</div>
+
+								<!-- Bericht veld -->
+								<div class="col-12">
+									<textarea name="message" id="message" placeholder="Message" rows="4" required></textarea>
+								</div>
+
+								<!-- Submit knop -->
+								<ul class="actions">
+									<li><input type="submit" value="Send Message" /></li>
+								</ul>
+
+							</div>
+						</form>
+					</div>
+
+					<!-- Contact info rechts -->
+					<div class="col-4 col-12-small">
+						<ul class="labeled-icons">
+
+							<!-- Adres -->
+							<li>
+								<h3 class="icon solid fa-home"><span class="label">Address</span></h3>
+								Breendonkstraat, 2830 Willebroek <br />
+								Antwerp, Belgium
+							</li>
+
+							<!-- Telefoon -->
+							<li>
+								<h3 class="icon solid fa-mobile-alt"><span class="label">Phone</span></h3>
+								+32468255970
+							</li>
+
+							<!-- Email -->
+							<li>
+								<h3 class="icon solid fa-envelope"><span class="label">Email</span></h3>
+								<a href="#">Inquiries@yassarchive.com</a>
+							</li>
+
+						</ul>
+					</div>
+
+				</div>
+			</section>
+
+			<!-- CV download sectie -->
+			<section id="cv">
+				<h2>Curriculum Vitae</h2>
+
+				<!-- Uitleg CV download -->
+				<p>You can download my CV below:</p>
+
+				<!-- Download knop -->
+				<a href="assets/Yassarchive.pdf" download class="button">
+					Download CV
+				</a>
+			</section>
+
+		</div>
+
+		<!-- Footer onderaan pagina -->
+		<footer id="footer">
+			<div class="inner">
+
+				<!-- Social icons -->
+				<ul class="icons">
+					<li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
+				</ul>
+
+				<!-- Copyright info -->
+				<ul class="copyright">
+					<li>&copy; Archive07</li>
+					<li>Design: <a href="http://html5up.net">Yasmine</a></li>
+				</ul>
+
+			</div>
+		</footer>
+
+		<!-- Scripts: functionaliteit van template -->
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.poptrox.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
 
 	</body>
-
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
