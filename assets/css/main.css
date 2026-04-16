@@ -157,8 +157,7 @@ input[type="submit"] {
 
 /* images */
 .image img {
-  width: auto;
-  max-width: 100%;
+  width: 100%;
   border-radius: 0.35em;
   display: block;
 }
