@@ -6,65 +6,121 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="assets/css/main.css" />
 
-  <!-- Quick enhancement styles (can be moved into main.css) -->
+  <!-- Quick enhancement styles (kan later naar main.css verplaatst worden) -->
   <style>
     :root{
-      --white:#ffffff !important;
-      --orange:#FCC979 !important;
-      --text:#000000 !important; 
+      --white:#ffffff !important; /* basis kleur wit (globale variabele) */
+      --orange:#FCC979 !important; /* accentkleur voor highlights en effecten */
+      --text:#000000 !important;  /* standaard tekstkleur */
     }
 
-    /* Page fade-in */
-    body{ opacity:0; transition:opacity .45s ease; background:var(--navy); color:var(--text); }
-    body.ready{ opacity:1; }
+    /* Fade-in effect van de hele pagina bij laden */
+    body{
+      opacity:0; /* start onzichtbaar */
+      transition:opacity .45s ease; /* smooth overgang naar zichtbaar */
+      background:var(--navy); /* achtergrondkleur van pagina */
+      color:var(--text); /* standaard tekstkleur */
+    }
 
-    /* Back button hover polish */
+    body.ready{
+      opacity:1; /* pagina wordt zichtbaar na load */
+    }
+
+    /* Styling van de back-knop in de header */
     #header .button{
-      transition: transform .18s ease, box-shadow .18s ease;
-      border-color: rgba(255, 255, 255, 0.5);
-    }
-    #header .button:hover{
-      transform: translateY(-2px);
-      box-shadow: 0 10px 24px rgba(0,0,0,.25), 0 0 0 1px rgba(255,122,0,.25) inset;
+      transition: transform .18s ease, box-shadow .18s ease; /* animatie bij hover */
+      border-color: rgba(255, 255, 255, 0.5); /* subtiele rand */
     }
 
-    /* Section glow accents */
-    #about.section-glow{ position:relative; overflow:hidden; }
+    #header .button:hover{
+      transform: translateY(-2px); /* knop beweegt licht omhoog bij hover */
+      box-shadow: 0 10px 24px rgba(0,0,0,.25), 0 0 0 1px rgba(255,122,0,.25) inset;
+      /* zorgt voor glow/3D effect */
+    }
+
+    /* Glow effect rond de About sectie */
+    #about.section-glow{
+      position:relative; /* nodig voor pseudo-elementen */
+      overflow:hidden; /* voorkomt dat glow buiten sectie valt */
+    }
+
+    /* eerste glow cirkel */
     #about.section-glow::before,
     #about.section-glow::after{
-      content:"";
-      position:absolute; border-radius:50%; filter: blur(90px); pointer-events:none;
+      content:""; /* pseudo-element */
+      position:absolute;
+      border-radius:50%;
+      filter: blur(90px); /* zachte glow */
+      pointer-events:none;
     }
+
     #about.section-glow::before{
-      width:420px; height:420px; top:-140px; right:-140px;
+      width:420px;
+      height:420px;
+      top:-140px;
+      right:-140px;
       background: radial-gradient(circle, rgba(255,122,0,.35), transparent 60%);
+      /* oranje glow rechtsboven */
     }
+
     #about.section-glow::after{
-      width:360px; height:360px; bottom:-160px; left:-160px;
+      width:360px;
+      height:360px;
+      bottom:-160px;
+      left:-160px;
       background: radial-gradient(circle, rgba(28,42,87,.45), transparent 60%);
+      /* blauwe glow linksonder */
     }
 
-    /* Typewriter title */
+    /* Titel effect (typewriter stijl) */
     h1.type {
-      color: var(--text); /* make text white */
-      font-family: "Times New Roman Condensed", serif;
+      color: var(--text); /* tekstkleur */
+      font-family: "Times New Roman Condensed", serif; /* serif look */
       font-weight: 650;
-      white-space: nowrap; overflow: hidden;
-      border-right: 2px solid var(--orange);
+      white-space: nowrap; /* voorkomt dat tekst breekt */
+      overflow: hidden; /* nodig voor typewriter effect */
+      border-right: 2px solid var(--orange); /* knipperende cursor */
     }
-    @keyframes caret { 50% { border-color: transparent; } }
-    h1.type.caret { animation: caret 1s steps(1) infinite; }
 
-    /* Scroll reveal */
-    .reveal { opacity:0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
-    .reveal.in { opacity:1; transform: none; }
+    @keyframes caret {
+      50% { border-color: transparent; } /* cursor knippert */
+    }
 
-    /* Nice readable width + spacing */
-    #main{ padding: 2.5rem 1.25rem; }
-    #about{ max-width: 900px; margin: 0 auto; }
-    #about p{ line-height: 1.8; font-size: 1.05rem; margin: 1rem 0; }
+    h1.type.caret {
+      animation: caret 1s steps(1) infinite;
+    }
 
-    /* Handwritten highlight option */
+    /* Scroll animatie voor content */
+    .reveal {
+      opacity:0; /* start onzichtbaar */
+      transform: translateY(14px); /* start iets naar beneden */
+      transition: opacity .6s ease, transform .6s ease;
+    }
+
+    .reveal.in {
+      opacity:1; /* zichtbaar */
+      transform: none; /* terug naar normale positie */
+    }
+
+    /* Layout spacing van pagina */
+    #main{
+      padding: 2.5rem 1.25rem;
+    }
+
+    /* Breedte van content beperkt voor leesbaarheid */
+    #about{
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    /* Tekst styling */
+    #about p{
+      line-height: 1.8; /* meer leesruimte tussen regels */
+      font-size: 1.05rem;
+      margin: 1rem 0;
+    }
+
+    /* Highlight stijl voor belangrijke woorden */
     .mark {
       font-family: "Homemade Apple", "Caveat", cursive;
       color: var(--orange);
@@ -72,24 +128,45 @@
       padding: 0 .15em;
     }
 
-    /* Remove any template background/shape only on the About section */
-    #about { background: none !important; }
+    /* verwijdert eventuele standaard achtergrond van template */
+    #about {
+      background: none !important;
+    }
+
     #about::before,
-    #about::after { content: none !important; }
+    #about::after {
+      content: none !important;
+    }
 
-    /* Remove any template background/shape from the main container on this page */
-    #main { background: none !important; }
+    /* verwijdert achtergrond van main container */
+    #main {
+      background: none !important;
+    }
+
     #main::before,
-    #main::after { content: none !important; }
+    #main::after {
+      content: none !important;
+    }
 
-    /* Respect reduced motion */
+    /* respecteert gebruikers die geen animaties willen */
     @media (prefers-reduced-motion: reduce){
-      body{ transition:none !important; }
-      .reveal{ transition:none !important; transform:none !important; opacity:1 !important; }
-      h1.type{ border-right: none !important; }
+      body{
+        transition:none !important;
+      }
+
+      .reveal{
+        transition:none !important;
+        transform:none !important;
+        opacity:1 !important;
+      }
+
+      h1.type{
+        border-right: none !important; /* cursor uit */
+      }
     }
   </style>
 </head>
+
 <body>
 
   <header id="header">
@@ -100,59 +177,71 @@
 
   <main id="main">
     <section id="about" class="section-glow">
-      <!-- Typewriter title; text typed via JS -->
+
+      <!-- Typewriter titel: wordt via JS ingetypt -->
       <h1 class="type caret" id="typeTarget" aria-label="Electrical engineering."></h1>
 
-      <!-- Content -->
-      <p class="reveal"> <section id="electrical-engineering">
-  <header class="major">
-    <h2></h2>
-  </header>
+      <!-- Content sectie -->
+      <p class="reveal">
+        <section id="electrical-engineering">
 
-  <p>
-   Under construction
-  </p>
+          <header class="major">
+            <h2></h2>
+          </header>
 
-        
+          <p>
+            Electrical engineering fascinates me because it connects <strong>abstract logic with practical innovation</strong>.
+          </p>
+
+          <p>
+            Using <strong>Logisim</strong>, I have built and simulated logic gates, adders, multiplexers, ALUs, and CPU models.
+          </p>
+
+          <p>
+            With <strong>Arduino</strong> and <strong>Raspberry Pi</strong> I explore hardware, sensors, automation and IoT.
+          </p>
+
+          <p>
+            Focus ligt op systemen die <strong>efficient, scalable en praktisch bruikbaar</strong> zijn.
+          </p>
+
+        </section>
+      </p>
+
     </section>
   </main>
 
-  <!-- Tiny, dependency-free JS -->
   <script>
-    // Page fade-in
+    // pagina fade-in: zodra pagina geladen is, wordt hij zichtbaar
     window.addEventListener('load', ()=> document.body.classList.add('ready'));
 
-    // Typewriter effect for H1
+    // typewriter effect voor titel
     (function(){
       const text = "Electrical engineering";
       const el = document.getElementById('typeTarget');
       let i = 0;
+
       function type(){
-        el.textContent = text.slice(0, ++i);
+        el.textContent = text.slice(0, ++i); // stukje per stukje tekst tonen
         if(i < text.length) setTimeout(type, 60);
-        else el.classList.add('caret'); // keep blinking caret
+        else el.classList.add('caret'); // cursor blijft knipperen
       }
+
       type();
     })();
 
-    // Scroll reveal for paragraphs
+    // scroll reveal animatie voor paragrafen
     const io = new IntersectionObserver((entries)=>{
       entries.forEach(e=>{
         if(e.isIntersecting){
-          e.target.classList.add('in');
+          e.target.classList.add('in'); // zichtbaar maken
           io.unobserve(e.target);
         }
       });
     }, { threshold: 0.12 });
+
     document.querySelectorAll('.reveal').forEach(el=> io.observe(el));
   </script>
+
 </body>
 </html>
-
-
-
-
-
-
-
-
