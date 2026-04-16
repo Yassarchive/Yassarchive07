@@ -1,88 +1,146 @@
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
-  <title> </title>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="assets/css/main.css" />
+  <title> </title> <!-- Titel van de pagina in de browser tab -->
+  <meta charset="utf-8" /> <!-- Ondersteunt alle tekens (letters, symbolen, etc.) -->
+  <meta name="viewport" content="width=device-width, initial-scale=1" /> <!-- Maakt pagina responsive op mobiel -->
+  <link rel="stylesheet" href="assets/css/main.css" /> <!-- Koppelt externe CSS file -->
 
-  <!-- Quick enhancement styles (can be moved into main.css) -->
+  <!-- Inline CSS: extra styling specifiek voor deze pagina -->
   <style>
     :root{
-      --white:#ffffff !important;
-      --orange:#FCC979 !important;
-      --text:#000000 !important; 
+      --white:#ffffff !important; /* witte kleur variabele */
+      --orange:#FCC979 !important; /* accentkleur (oranje highlight) */
+      --text:#000000 !important;  /* standaard tekstkleur */
     }
 
-    /* Page fade-in */
-    body{ opacity:0; transition:opacity .45s ease; background:var(--navy); color:var(--text); }
-    body.ready{ opacity:1; }
+    /* Fade-in effect van de pagina bij laden */
+    body{
+      opacity:0; /* start onzichtbaar */
+      transition:opacity .45s ease; /* smooth fade-in animatie */
+      background:var(--navy);
+      color:var(--text);
+    }
 
-    /* Back button hover polish */
+    body.ready{
+      opacity:1; /* wordt zichtbaar na load */
+    }
+
+    /* Styling van back knop */
     #header .button{
-      transition: transform .18s ease, box-shadow .18s ease;
+      transition: transform .18s ease, box-shadow .18s ease; /* animatie bij hover */
       border-color: rgba(255, 255, 255, 0.5);
     }
+
+    /* Hover effect op knop (licht omhoog + shadow) */
     #header .button:hover{
-      transform: translateY(-2px);
+      transform: translateY(-2px); /* knop beweegt omhoog */
       box-shadow: 0 10px 24px rgba(0,0,0,.25), 0 0 0 1px rgba(255,122,0,.25) inset;
     }
 
-    /* Section glow accents */
-    #about.section-glow{ position:relative; overflow:hidden; }
+    /* Glow achtergrond effect in sectie */
+    #about.section-glow{
+      position:relative;
+      overflow:hidden; /* voorkomt dat glow buiten sectie valt */
+    }
+
+    /* Glow shapes (decoratief) */
     #about.section-glow::before,
     #about.section-glow::after{
       content:"";
-      position:absolute; border-radius:50%; filter: blur(90px); pointer-events:none;
+      position:absolute;
+      border-radius:50%;
+      filter: blur(90px); /* zachte blur */
+      pointer-events:none; /* niet klikbaar */
     }
+
+    /* Glow rechtsboven */
     #about.section-glow::before{
-      width:420px; height:420px; top:-140px; right:-140px;
+      width:420px;
+      height:420px;
+      top:-140px;
+      right:-140px;
       background: radial-gradient(circle, rgba(255,122,0,.35), transparent 60%);
     }
+
+    /* Glow linksonder */
     #about.section-glow::after{
-      width:360px; height:360px; bottom:-160px; left:-160px;
+      width:360px;
+      height:360px;
+      bottom:-160px;
+      left:-160px;
       background: radial-gradient(circle, rgba(28,42,87,.45), transparent 60%);
     }
 
-    /* Typewriter title */
+    /* Typewriter titel styling */
     h1.type {
-      color: var(--text); /* make text white */
-      font-family: "Times New Roman Condensed", serif;
-      font-weight: 650;
-      white-space: nowrap; overflow: hidden;
-      border-right: 2px solid var(--orange);
+      color: var(--text); /* tekstkleur */
+      font-family: "Times New Roman Condensed", serif; /* font van titel */
+      font-weight: 650; /* dikte van tekst */
+      white-space: nowrap; /* voorkomt dat tekst breekt */
+      overflow: hidden; /* verbergt overflow tijdens typing */
+      border-right: 2px solid var(--orange); /* cursor effect */
     }
-    @keyframes caret { 50% { border-color: transparent; } }
-    h1.type.caret { animation: caret 1s steps(1) infinite; }
 
-    /* Scroll reveal */
-    .reveal { opacity:0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
-    .reveal.in { opacity:1; transform: none; }
+    /* Knipperende cursor animatie */
+    @keyframes caret {
+      50% { border-color: transparent; }
+    }
 
-    /* Nice readable width + spacing */
-    #main{ padding: 2.5rem 1.25rem; }
-    #about{ max-width: 900px; margin: 0 auto; }
-    #about p{ line-height: 1.8; font-size: 1.05rem; margin: 1rem 0; }
+    h1.type.caret {
+      animation: caret 1s steps(1) infinite; /* cursor knippert */
+    }
 
-    /* Handwritten highlight option */
+    /* Scroll reveal animatie */
+    .reveal {
+      opacity:0; /* start onzichtbaar */
+      transform: translateY(14px); /* start iets naar beneden */
+      transition: opacity .6s ease, transform .6s ease;
+    }
+
+    /* wanneer element in beeld komt */
+    .reveal.in {
+      opacity:1;
+      transform: none;
+    }
+
+    /* layout padding van pagina */
+    #main{
+      padding: 2.5rem 1.25rem;
+    }
+
+    /* breedte beperking voor leesbaarheid */
+    #about{
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    /* styling van paragrafen */
+    #about p{
+      line-height: 1.8; /* ruimte tussen regels */
+      font-size: 1.05rem; /* tekstgrootte */
+      margin: 1rem 0; /* afstand tussen paragrafen */
+    }
+
+    /* highlight stijl (handwritten accent) */
     .mark {
-      font-family: "Homemade Apple", "Caveat", cursive;
+      font-family: "Homemade Apple", "Caveat", cursive; /* handwritten font */
       color: var(--orange);
       background: linear-gradient(transparent 60%, rgba(255,122,0,.18) 60%);
       padding: 0 .15em;
     }
 
-    /* Remove any template background/shape only on the About section */
+    /* verwijdert standaard achtergrond van template */
     #about { background: none !important; }
     #about::before,
     #about::after { content: none !important; }
 
-    /* Remove any template background/shape from the main container on this page */
+    /* verwijdert achtergrond van main container */
     #main { background: none !important; }
     #main::before,
     #main::after { content: none !important; }
 
-    /* Respect reduced motion */
+    /* respecteert users die minder animaties willen */
     @media (prefers-reduced-motion: reduce){
       body{ transition:none !important; }
       .reveal{ transition:none !important; transform:none !important; opacity:1 !important; }
@@ -90,60 +148,63 @@
     }
   </style>
 </head>
+
 <body>
 
+  <!-- Header met navigatie knop -->
   <header id="header">
     <div class="inner">
       <a href="portfolio.html" class="button">Back to Home</a>
     </div>
   </header>
 
+  <!-- Hoofdinhoud van de pagina -->
   <main id="main">
     <section id="about" class="section-glow">
-      <!-- Typewriter title; text typed via JS -->
+
+      <!-- Titel met typewriter effect -->
       <h1 class="type caret" id="typeTarget" aria-label="Integrated projects."></h1>
 
-      <!-- Content -->
-      <p class="reveal"> Under construction <p/>
+      <!-- Content placeholder -->
+      <p class="reveal"> Under construction <p/> <!-- tijdelijke tekst -->
+
     </section>
   </main>
 
-  <!-- Tiny, dependency-free JS -->
+  <!-- JavaScript functionaliteit -->
   <script>
-    // Page fade-in
+
+    // pagina fade-in zodra alles geladen is
     window.addEventListener('load', ()=> document.body.classList.add('ready'));
 
-    // Typewriter effect for H1
+    // typewriter effect voor titel
     (function(){
       const text = "Integrated projects";
       const el = document.getElementById('typeTarget');
       let i = 0;
+
       function type(){
-        el.textContent = text.slice(0, ++i);
+        el.textContent = text.slice(0, ++i); // bouwt tekst letter per letter
         if(i < text.length) setTimeout(type, 60);
-        else el.classList.add('caret'); // keep blinking caret
+        else el.classList.add('caret'); // laat cursor knipperen
       }
+
       type();
     })();
 
-    // Scroll reveal for paragraphs
+    // scroll animatie (elementen verschijnen wanneer zichtbaar)
     const io = new IntersectionObserver((entries)=>{
       entries.forEach(e=>{
         if(e.isIntersecting){
-          e.target.classList.add('in');
-          io.unobserve(e.target);
+          e.target.classList.add('in'); // activeert animatie
+          io.unobserve(e.target); // stopt observer
         }
       });
     }, { threshold: 0.12 });
+
     document.querySelectorAll('.reveal').forEach(el=> io.observe(el));
+
   </script>
+
 </body>
 </html>
-
-
-
-
-
-
-
-
