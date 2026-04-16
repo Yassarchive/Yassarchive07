@@ -24,13 +24,12 @@ html, body {
   -webkit-text-size-adjust: none;
 }
 
-/* remove default spacing */
+/* reset */
 h1,h2,h3,h4,h5,h6,p,ul,ol,blockquote,figure {
   margin: 0;
   padding: 0;
 }
 
-/* lists */
 ul, ol { list-style: none; }
 
 /* links */
@@ -64,30 +63,32 @@ p { margin-bottom: 2em; }
   padding: 0 2em;
 }
 
-/* FLEX GRID (replaces 500+ row lines) */
+/* FIXED GRID */
 .row {
   display: flex;
   flex-wrap: wrap;
-  gap: 2.5em;
+  margin: -1.25em; /* replaces gap behavior properly */
 }
 
+/* IMPORTANT FIX: no flex:1 here */
 [class^="col-"] {
-  flex: 1;
+  padding: 1.25em;
+  flex: 0 0 auto;
 }
 
-/* simple column system */
-.col-1 { flex: 0 0 8.333%; }
-.col-2 { flex: 0 0 16.666%; }
-.col-3 { flex: 0 0 25%; }
-.col-4 { flex: 0 0 33.333%; }
-.col-5 { flex: 0 0 41.666%; }
-.col-6 { flex: 0 0 50%; }
-.col-7 { flex: 0 0 58.333%; }
-.col-8 { flex: 0 0 66.666%; }
-.col-9 { flex: 0 0 75%; }
-.col-10 { flex: 0 0 83.333%; }
-.col-11 { flex: 0 0 91.666%; }
-.col-12 { flex: 0 0 100%; }
+/* column widths */
+.col-1 { width: 8.333%; }
+.col-2 { width: 16.666%; }
+.col-3 { width: 25%; }
+.col-4 { width: 33.333%; }
+.col-5 { width: 41.666%; }
+.col-6 { width: 50%; }
+.col-7 { width: 58.333%; }
+.col-8 { width: 66.666%; }
+.col-9 { width: 75%; }
+.col-10 { width: 83.333%; }
+.col-11 { width: 91.666%; }
+.col-12 { width: 100%; }
 
 /* =========================
    HEADER / MAIN LAYOUT
@@ -114,10 +115,7 @@ p { margin-bottom: 2em; }
   max-width: 54em;
 }
 
-/* =========================
-   FORMS (simplified)
-========================= */
-
+/* forms */
 input, select, textarea {
   width: 100%;
   padding: 0.75em;
@@ -134,10 +132,7 @@ textarea:focus {
   outline: none;
 }
 
-/* =========================
-   BUTTONS
-========================= */
-
+/* buttons */
 .button,
 input[type="submit"] {
   display: inline-block;
@@ -154,35 +149,25 @@ input[type="submit"] {
   color: var(--accent);
 }
 
-/* primary button */
 .button.primary {
   background: var(--accent);
   color: white;
   border-color: var(--accent);
 }
 
-/* =========================
-   IMAGE
-========================= */
-
+/* images */
 .image img {
   width: 100%;
   border-radius: 0.35em;
 }
 
-/* =========================
-   UTILITIES
-========================= */
-
+/* utilities */
 .text-center { text-align: center; }
 .text-right { text-align: right; }
 .mt-0 { margin-top: 0; }
 .mt-2 { margin-top: 2em; }
 
-/* =========================
-   RESPONSIVE (CLEANED)
-========================= */
-
+/* responsive */
 @media (max-width: 980px) {
   #header {
     position: relative;
@@ -198,16 +183,16 @@ input[type="submit"] {
   .row {
     flex-direction: column;
   }
+
+  [class^="col-"] {
+    width: 100%;
+  }
 }
 
 @media (max-width: 736px) {
-  html {
-    font-size: 14pt;
-  }
+  html { font-size: 14pt; }
 }
 
 @media (max-width: 480px) {
-  html {
-    font-size: 13pt;
-  }
+  html { font-size: 13pt; }
 }
