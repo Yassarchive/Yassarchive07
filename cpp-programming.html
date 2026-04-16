@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="assets/css/main.css" />
 
-  <!-- Quick enhancement styles (can be moved into main.css) -->
   <style>
     :root{
       --white:#ffffff !important;
@@ -14,11 +13,11 @@
       --text:#000000 !important; 
     }
 
-    /* Page fade-in */
+    /* Pagina fade-in effect bij het laden */
     body{ opacity:0; transition:opacity .45s ease; background:var(--navy); color:var(--text); }
     body.ready{ opacity:1; }
 
-    /* Back button hover polish */
+    /* Styling voor de 'terug' knop met hover effect */
     #header .button{
       transition: transform .18s ease, box-shadow .18s ease;
       border-color: rgba(255, 255, 255, 0.5);
@@ -28,7 +27,7 @@
       box-shadow: 0 10px 24px rgba(0,0,0,.25), 0 0 0 1px rgba(255,122,0,.25) inset;
     }
 
-    /* Section glow accents */
+    /* Achtergrond gloed effecten (sectie accenten) */
     #about.section-glow{ position:relative; overflow:hidden; }
     #about.section-glow::before,
     #about.section-glow::after{
@@ -44,9 +43,9 @@
       background: radial-gradient(circle, rgba(28,42,87,.45), transparent 60%);
     }
 
-    /* Typewriter title */
+    /* Typewriter effect voor de titel */
     h1.type {
-      color: var(--text); /* make text white */
+      color: var(--text); 
       font-family: "Times New Roman Condensed", serif;
       font-weight: 650;
       white-space: nowrap; overflow: hidden;
@@ -55,16 +54,16 @@
     @keyframes caret { 50% { border-color: transparent; } }
     h1.type.caret { animation: caret 1s steps(1) infinite; }
 
-    /* Scroll reveal */
+    /* Scroll reveal: tekst verschijnt tijdens het scrollen */
     .reveal { opacity:0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
     .reveal.in { opacity:1; transform: none; }
 
-    /* Nice readable width + spacing */
+    /* Layout instellingen voor leesbaarheid */
     #main{ padding: 2.5rem 1.25rem; }
     #about{ max-width: 900px; margin: 0 auto; }
     #about p{ line-height: 1.8; font-size: 1.05rem; margin: 1rem 0; }
 
-    /* Handwritten highlight option */
+    /* Markering voor handgeschreven accenten */
     .mark {
       font-family: "Homemade Apple", "Caveat", cursive;
       color: var(--orange);
@@ -72,17 +71,16 @@
       padding: 0 .15em;
     }
 
-    /* Remove any template background/shape only on the About section */
+    /* Verwijder standaard template vormen en achtergronden */
     #about { background: none !important; }
     #about::before,
     #about::after { content: none !important; }
 
-    /* Remove any template background/shape from the main container on this page */
     #main { background: none !important; }
     #main::before,
     #main::after { content: none !important; }
 
-    /* Respect reduced motion */
+    /* Instellingen voor gebruikers die minder beweging op het scherm willen */
     @media (prefers-reduced-motion: reduce){
       body{ transition:none !important; }
       .reveal{ transition:none !important; transform:none !important; opacity:1 !important; }
@@ -100,20 +98,17 @@
 
   <main id="main">
     <section id="about" class="section-glow">
-      <!-- Typewriter title; text typed via JS -->
       <h1 class="type caret" id="typeTarget" aria-label="C++ programming."></h1>
 
-      <!-- Content -->
       <p class="reveal"> Under construction <p/>
     </section>
   </main>
 
-  <!-- Tiny, dependency-free JS -->
   <script>
-    // Page fade-in
+    // Fade-in van de pagina zodra alles geladen is
     window.addEventListener('load', ()=> document.body.classList.add('ready'));
 
-    // Typewriter effect for H1
+    // Het typewriter (typemachine) effect voor de H1 titel
     (function(){
       const text = "C++ programming";
       const el = document.getElementById('typeTarget');
@@ -121,12 +116,12 @@
       function type(){
         el.textContent = text.slice(0, ++i);
         if(i < text.length) setTimeout(type, 60);
-        else el.classList.add('caret'); // keep blinking caret
+        else el.classList.add('caret'); // Blijf de cursor laten knipperen
       }
       type();
     })();
 
-    // Scroll reveal for paragraphs
+    // IntersectionObserver zorgt dat paragrafen verschijnen als je ze in beeld scrollt
     const io = new IntersectionObserver((entries)=>{
       entries.forEach(e=>{
         if(e.isIntersecting){
@@ -138,13 +133,4 @@
     document.querySelectorAll('.reveal').forEach(el=> io.observe(el));
   </script>
 </body>
-</html>
-
-
-
-
-
-
-
-
 </html>
