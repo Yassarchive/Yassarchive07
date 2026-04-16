@@ -157,11 +157,14 @@ input[type="submit"] {
 
 /* images */
 .image img {
-  width: 100%;
-  max-width: 200px; 
+  width: 150px;     
   border-radius: 0.35em;
   display: block;
-  margin-left: auto; 
+  margin-left: auto;  
+}
+
+#main .image img {
+  width: 100%;       
 }
 
 /* utilities */
@@ -171,11 +174,17 @@ input[type="submit"] {
 .mt-2 { margin-top: 2em; }
 
 /* responsive */
+/* responsive */
 @media (max-width: 980px) {
   #header {
     position: relative;
     width: 100%;
     text-align: center;
+  }
+
+  /* Centers the small profile image on mobile */
+  #header .image img {
+    margin: 0 auto;
   }
 
   #main {
