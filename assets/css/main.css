@@ -156,12 +156,11 @@ input[type="submit"] {
 }
 
 /* images */
-.profile-pic img {
-  width: 180px !important;
-  height: 180px !important;
-  object-fit: cover;
-  border-radius: 50%;
-  flex-shrink: 0;
+.image img {
+  width: auto;
+  max-width: 100%;
+  border-radius: 0.35em;
+  display: block;
 }
 
 /* utilities */
