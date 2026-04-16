@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="assets/css/main.css" />
 
-  <!-- Quick enhancement styles (can be moved into main.css) -->
+  <!-- Inline CSS: extra effecten specifiek voor deze pagina -->
   <style>
     :root{
       --white:#ffffff !important;
@@ -14,57 +14,108 @@
       --text:#000000 !important;
     }
 
-    /* Page fade-in */
-    body{ opacity:0; transition:opacity .45s ease; background:var(--navy); color:var(--text); }
+    /* Fade-in effect van de hele pagina bij load */
+    body{
+      opacity:0;
+      transition:opacity .45s ease;
+      background:var(--navy);
+      color:var(--text);
+    }
     body.ready{ opacity:1; }
 
-    /* Back button hover polish */
+    /* Styling voor de "Back to Home" knop */
     #header .button{
       transition: transform .18s ease, box-shadow .18s ease;
       border-color: rgba(255, 255, 255, 0.5);
     }
+
+    /* Hover effect op knop → licht omhoog + schaduw */
     #header .button:hover{
       transform: translateY(-2px);
       box-shadow: 0 10px 24px rgba(0,0,0,.25), 0 0 0 1px rgba(255, 255, 255, 0.25) inset;
     }
 
-    /* Section glow accents */
+    /* Visuele "glow" achtergrond effecten in About sectie */
     #about.section-glow{ position:relative; overflow:hidden; }
+
     #about.section-glow::before,
     #about.section-glow::after{
       content:"";
-      position:absolute; border-radius:50%; filter: blur(90px); pointer-events:none;
+      position:absolute;
+      border-radius:50%;
+      filter: blur(90px);
+      pointer-events:none;
     }
+
+    /* Boven rechts glow accent */
     #about.section-glow::before{
-      width:420px; height:420px; top:-140px; right:-140px;
+      width:420px;
+      height:420px;
+      top:-140px;
+      right:-140px;
       background: radial-gradient(circle, rgba(255,122,0,.35), transparent 60%);
     }
+
+    /* Onder links glow accent */
     #about.section-glow::after{
-      width:360px; height:360px; bottom:-160px; left:-160px;
+      width:360px;
+      height:360px;
+      bottom:-160px;
+      left:-160px;
       background: radial-gradient(circle, rgba(28,42,87,.45), transparent 60%);
     }
 
-    /* Typewriter title */
+    /* Typewriter titel styling */
     h1.type {
-      color: var(--text); /* make text white */
+      color: var(--text);
       font-family: "Times New Roman", serif;
       font-weight: 700;
-      white-space: nowrap; overflow: hidden;
-      border-right: 2px solid var(--orange);
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 2px solid var(--orange); /* cursor effect */
     }
-    @keyframes caret { 50% { border-color: transparent; } }
-    h1.type.caret { animation: caret 1s steps(1) infinite; }
 
-    /* Scroll reveal */
-    .reveal { opacity:0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
-    .reveal.in { opacity:1; transform: none; }
+    /* Knipperende cursor animatie */
+    @keyframes caret {
+      50% { border-color: transparent; }
+    }
 
-    /* Nice readable width + spacing */
-    #main{ padding: 2.5rem 1.25rem; }
-    #about{ max-width: 900px; margin: 0 auto; }
-    #about p{ line-height: 1.8; font-size: 1.05rem; margin: 1rem 0; }
+    h1.type.caret {
+      animation: caret 1s steps(1) infinite;
+    }
 
-    /* Handwritten highlight option */
+    /* Scroll reveal animatie (fade + omhoog komen) */
+    .reveal {
+      opacity:0;
+      transform: translateY(14px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+
+    /* Wanneer element zichtbaar wordt in viewport */
+    .reveal.in {
+      opacity:1;
+      transform: none;
+    }
+
+    /* Layout van main content (ruimte rondom tekst) */
+    #main{
+      padding: 2.5rem 1.25rem;
+    }
+
+    /* Breedte beperking zodat tekst leesbaar blijft */
+    #about{
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    /* Tekst styling voor betere leesbaarheid */
+    #about p{
+      line-height: 1.8;
+      font-size: 1.05rem;
+      margin: 1rem 0;
+    }
+
+    /* Highlight stijl (handwritten effect accent woord) */
     .mark {
       font-family: "Homemade Apple", "Caveat", cursive;
       color: var(--orange);
@@ -72,17 +123,17 @@
       padding: 0 .15em;
     }
 
-    /* Remove any template background/shape only on the About section */
+    /* Verwijdert standaard template achtergrond van About sectie */
     #about { background: none !important; }
     #about::before,
     #about::after { content: none !important; }
 
-    /* Remove any template background/shape from the main container on this page */
+    /* Verwijdert template styling van main container */
     #main { background: none !important; }
     #main::before,
     #main::after { content: none !important; }
 
-    /* Respect reduced motion */
+    /* Respecteert gebruikers die minder animaties willen */
     @media (prefers-reduced-motion: reduce){
       body{ transition:none !important; }
       .reveal{ transition:none !important; transform:none !important; opacity:1 !important; }
@@ -90,61 +141,73 @@
     }
   </style>
 </head>
+
 <body>
 
+  <!-- Header met back knop -->
   <header id="header">
     <div class="inner">
       <a href="index.html" class="button">Back to Home</a>
     </div>
   </header>
 
+  <!-- Hoofdcontent van de pagina -->
   <main id="main">
     <section id="about" class="section-glow">
-      <!-- Typewriter title; text typed via JS -->
+
+      <!-- Titel met typewriter effect -->
       <h1 class="type caret" id="typeTarget" aria-label="About Me — Yasmine"></h1>
 
-      <!-- Content -->
+      <!-- Google font specifiek voor script/handwriting stijl -->
       <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+
       <style>
-  .reveal {
-    font-family: 'Dancing Script', cursive;
-  }
+        /* Past handwritten font toe op alle reveal teksten */
+        .reveal {
+          font-family: 'Dancing Script', cursive;
+        }
       </style>
-      <p class="reveal">I’m <span class="mark">Yasmine</span>, a 25-year-old IT specialist whose fascination with technology began early in childhood. Growing up, I was captivated not only by the magic of programming and software but also by the intricate physical components of computers and devices. This dual interest in both software and hardware has shaped my approach to IT — I believe in understanding technology inside and out, combining coding skills with hands-on experience to create comprehensive solutions.</p>
 
-      <p class="reveal">While programming challenges and logical problem-solving fuel my curiosity, I equally enjoy working directly with hardware — building, troubleshooting, and optimizing systems. This balance allows me to bridge the gap between abstract code and tangible technology, giving me a unique perspective and skill set in the IT field. I created this website as a portfolio to showcase my passion for computer science and to document the projects and experiences that have contributed to my growth.</p>
+      <!-- Paragrafen met scroll reveal effect -->
+      <p class="reveal">I’m <span class="mark">Yasmine</span>, a 25-year-old IT specialist ...</p>
 
-      <p class="reveal">I have 1+ years of professional experience as an IT specialist. My tech stack and tools include Python, Java, C++, SQL, Django, Scala, and HTML; version control with GitHub; cloud with Microsoft Azure; IDEs such as VS Code, PyCharm, IntelliJ IDEA, CLion, and Sublime Text; virtualization with VMware, VirtualBox, and Parallels; networking &amp; telephony with Ruckus Wireless and the 3CX Phone System; IT service management with TOPdesk; utilities like Logisim, Balena Etcher, Rufus, and MARS (MIPS); and productivity/DAM platforms such as Microsoft 365 and Bynder.</p>
+      <p class="reveal">While programming challenges ...</p>
 
-      <p class="reveal">Languages: Dutch and English (my primary working languages), Arabic, and French — and I’m currently learning Spanish. I’m known for being extremely autonomous, resourceful in problem-solving, and persevering. I also love broadening my vocabulary and knowledge by reading books.</p>
+      <p class="reveal">I have 1+ years of professional experience ...</p>
 
-      <p class="reveal">I am deeply committed to continuous learning and professional development, eager to explore new technologies, frameworks, and hardware innovations. The IT landscape is constantly evolving, and I embrace that evolution by staying curious, adaptable, and proactive in expanding my expertise. Through my work, I aim to develop efficient, innovative solutions that not only solve problems but also enhance user experiences and system performance.</p>
+      <p class="reveal">Languages: Dutch and English ...</p>
 
-      <p class="reveal">Collaboration is also a core part of my professional philosophy. I enjoy connecting with fellow technology enthusiasts and professionals to share ideas, learn from one another, and contribute to meaningful projects that push the boundaries of what technology can achieve. This portfolio is more than just a showcase — it’s an invitation to engage, connect, and create together.</p>
+      <p class="reveal">I am deeply committed to continuous learning ...</p>
 
-      <p class="reveal">Looking forward, I aspire to deepen my skills in both software development and hardware engineering, continually blending these disciplines to deliver impactful results. My passion for technology is matched only by my dedication to using it as a tool for innovation and progress.</p>
+      <p class="reveal">Collaboration is also a core part ...</p>
+
+      <p class="reveal">Looking forward, I aspire to deepen my skills ...</p>
+
     </section>
   </main>
 
-  <!-- Tiny, dependency-free JS -->
+  <!-- JavaScript functionaliteit -->
   <script>
-    // Page fade-in
+
+    // Zodra pagina geladen is → fade-in activeren
     window.addEventListener('load', ()=> document.body.classList.add('ready'));
 
-    // Typewriter effect for H1
+    // Typewriter effect voor titel
     (function(){
       const text = "About Me — Yasmine";
       const el = document.getElementById('typeTarget');
       let i = 0;
+
       function type(){
         el.textContent = text.slice(0, ++i);
         if(i < text.length) setTimeout(type, 60);
-        else el.classList.add('caret'); // keep blinking caret
+        else el.classList.add('caret'); // cursor blijft knipperen
       }
+
       type();
     })();
 
-    // Scroll reveal for paragraphs
+    // Scroll animatie: elementen verschijnen wanneer je scrolt
     const io = new IntersectionObserver((entries)=>{
       entries.forEach(e=>{
         if(e.isIntersecting){
@@ -153,20 +216,10 @@
         }
       });
     }, { threshold: 0.12 });
+
     document.querySelectorAll('.reveal').forEach(el=> io.observe(el));
+
   </script>
+
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
