@@ -1,210 +1,70 @@
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
-  <title> </title> <!-- Titel van de pagina in de browser tab -->
-  <meta charset="utf-8" /> <!-- Ondersteunt alle tekens (letters, symbolen, etc.) -->
-  <meta name="viewport" content="width=device-width, initial-scale=1" /> <!-- Maakt pagina responsive op mobiel -->
-  <link rel="stylesheet" href="assets/css/main.css" /> <!-- Koppelt externe CSS file -->
+    <title> Integrated Projects </title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <style>
+        :root { --orange: #FCC979; --text: #000000; }
 
-  <!-- Inline CSS: extra styling specifiek voor deze pagina -->
-  <style>
-    :root{
-      --white:#ffffff !important; /* witte kleur variabele */
-      --orange:#FCC979 !important; /* accentkleur (oranje highlight) */
-      --text:#000000 !important;  /* standaard tekstkleur */
-    }
+        /* Pagina setup */
+        body { opacity: 0; transition: opacity .45s ease; background: #fff; color: var(--text); }
+        body.ready { opacity: 1; }
 
-    /* Fade-in effect van de pagina bij laden */
-    body{
-      opacity:0; /* start onzichtbaar */
-      transition:opacity .45s ease; /* smooth fade-in animatie */
-      background:var(--navy);
-      color:var(--text);
-    }
+        /* Layout & Glow */
+        #main { padding: 4rem 1.25rem; }
+        #about { max-width: 900px; margin: 0 auto; position: relative; }
+        #about.section-glow::before {
+            content: ""; position: absolute; border-radius: 50%; filter: blur(90px); z-index: -1;
+            width: 420px; height: 420px; top: -140px; right: -140px;
+            background: radial-gradient(circle, rgba(255,122,0,.15), transparent 60%);
+        }
 
-    body.ready{
-      opacity:1; /* wordt zichtbaar na load */
-    }
+        /* Typewriter */
+        h1.type {
+            color: #000000 !important; /* Forceert zwart */
+            font-family: "Times New Roman Condensed", serif;
+            font-weight: 800 !important; /* Maakt de tekst extra dik */
+            display: inline-block; 
+            white-space: nowrap; 
+            overflow: hidden;
+            border-right: 3px solid var(--orange);
+            width: 19ch;
+            animation: typing 2s steps(18, end), blink 0.75s step-end infinite;
+        }
+        @keyframes typing { from { width: 0 } to { width: 18ch } }
+        @keyframes blink { from, to { border-color: transparent } 50% { border-color: var(--orange) } }
 
-    /* Styling van back knop */
-    #header .button{
-      transition: transform .18s ease, box-shadow .18s ease; /* animatie bij hover */
-      border-color: rgba(255, 255, 255, 0.5);
-    }
+        /* Scroll reveal */
+        .reveal { opacity: 0; transform: translateY(14px); transition: all .6s ease; }
+        .reveal.in { opacity: 1; transform: none; }
 
-    /* Hover effect op knop (licht omhoog + shadow) */
-    #header .button:hover{
-      transform: translateY(-2px); /* knop beweegt omhoog */
-      box-shadow: 0 10px 24px rgba(0,0,0,.25), 0 0 0 1px rgba(255,122,0,.25) inset;
-    }
-
-    /* Glow achtergrond effect in sectie */
-    #about.section-glow{
-      position:relative;
-      overflow:hidden; /* voorkomt dat glow buiten sectie valt */
-    }
-
-    /* Glow shapes (decoratief) */
-    #about.section-glow::before,
-    #about.section-glow::after{
-      content:"";
-      position:absolute;
-      border-radius:50%;
-      filter: blur(90px); /* zachte blur */
-      pointer-events:none; /* niet klikbaar */
-    }
-
-    /* Glow rechtsboven */
-    #about.section-glow::before{
-      width:420px;
-      height:420px;
-      top:-140px;
-      right:-140px;
-      background: radial-gradient(circle, rgba(255,122,0,.35), transparent 60%);
-    }
-
-    /* Glow linksonder */
-    #about.section-glow::after{
-      width:360px;
-      height:360px;
-      bottom:-160px;
-      left:-160px;
-      background: radial-gradient(circle, rgba(28,42,87,.45), transparent 60%);
-    }
-
-    /* Typewriter titel styling */
-    h1.type {
-      color: var(--text); /* tekstkleur */
-      font-family: "Times New Roman Condensed", serif; /* font van titel */
-      font-weight: 650; /* dikte van tekst */
-      white-space: nowrap; /* voorkomt dat tekst breekt */
-      overflow: hidden; /* verbergt overflow tijdens typing */
-      border-right: 2px solid var(--orange); /* cursor effect */
-    }
-
-    /* Knipperende cursor animatie */
-    @keyframes caret {
-      50% { border-color: transparent; }
-    }
-
-    h1.type.caret {
-      animation: caret 1s steps(1) infinite; /* cursor knippert */
-    }
-
-    /* Scroll reveal animatie */
-    .reveal {
-      opacity:0; /* start onzichtbaar */
-      transform: translateY(14px); /* start iets naar beneden */
-      transition: opacity .6s ease, transform .6s ease;
-    }
-
-    /* wanneer element in beeld komt */
-    .reveal.in {
-      opacity:1;
-      transform: none;
-    }
-
-    /* layout padding van pagina */
-    #main{
-      padding: 2.5rem 1.25rem;
-    }
-
-    /* breedte beperking voor leesbaarheid */
-    #about{
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    /* styling van paragrafen */
-    #about p{
-      line-height: 1.8; /* ruimte tussen regels */
-      font-size: 1.05rem; /* tekstgrootte */
-      margin: 1rem 0; /* afstand tussen paragrafen */
-    }
-
-    /* highlight stijl (handwritten accent) */
-    .mark {
-      font-family: "Homemade Apple", "Caveat", cursive; /* handwritten font */
-      color: var(--orange);
-      background: linear-gradient(transparent 60%, rgba(255,122,0,.18) 60%);
-      padding: 0 .15em;
-    }
-
-    /* verwijdert standaard achtergrond van template */
-    #about { background: none !important; }
-    #about::before,
-    #about::after { content: none !important; }
-
-    /* verwijdert achtergrond van main container */
-    #main { background: none !important; }
-    #main::before,
-    #main::after { content: none !important; }
-
-    /* respecteert users die minder animaties willen */
-    @media (prefers-reduced-motion: reduce){
-      body{ transition:none !important; }
-      .reveal{ transition:none !important; transform:none !important; opacity:1 !important; }
-      h1.type{ border-right: none !important; }
-    }
-  </style>
+        /* Opschonen */
+        #about, #main { background: none !important; }
+        #about::after, #main::after, #about::before, #main::before { content: none; }
+    </style>
 </head>
-
 <body>
 
-  <!-- Header met navigatie knop -->
-  <header id="header">
-    <div class="inner">
-      <a href="portfolio.html" class="button">Back to Home</a>
-    </div>
-  </header>
+    <header id="header">
+        <div class="inner"><a href="portfolio.html" class="button">Back to projects</a></div>
+    </header>
 
-  <!-- Hoofdinhoud van de pagina -->
-  <main id="main">
-    <section id="about" class="section-glow">
+    <main id="main">
+        <section id="about" class="section-glow">
+            <h1 class="type"> Integrated Projects </h1>
+            <p class="reveal">Under construction</p>
+        </section>
+    </main>
 
-      <!-- Titel met typewriter effect -->
-      <h1 class="type caret" id="typeTarget" aria-label="Integrated projects."></h1>
+    <script>
+        window.addEventListener('load', () => document.body.classList.add('ready'));
 
-      <!-- Content placeholder -->
-      <p class="reveal"> Under construction <p/> <!-- tijdelijke tekst -->
-
-    </section>
-  </main>
-
-  <!-- JavaScript functionaliteit -->
-  <script>
-
-    // pagina fade-in zodra alles geladen is
-    window.addEventListener('load', ()=> document.body.classList.add('ready'));
-
-    // typewriter effect voor titel
-    (function(){
-      const text = "Integrated projects";
-      const el = document.getElementById('typeTarget');
-      let i = 0;
-
-      function type(){
-        el.textContent = text.slice(0, ++i); // bouwt tekst letter per letter
-        if(i < text.length) setTimeout(type, 60);
-        else el.classList.add('caret'); // laat cursor knipperen
-      }
-
-      type();
-    })();
-
-    // scroll animatie (elementen verschijnen wanneer zichtbaar)
-    const io = new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{
-        if(e.isIntersecting){
-          e.target.classList.add('in'); // activeert animatie
-          io.unobserve(e.target); // stopt observer
-        }
-      });
-    }, { threshold: 0.12 });
-
-    document.querySelectorAll('.reveal').forEach(el=> io.observe(el));
-
-  </script>
-
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+    </script>
 </body>
 </html>
