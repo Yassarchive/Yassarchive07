@@ -1,62 +1,78 @@
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
-  <title>Python Programming - Snake Game</title>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="assets/css/main.css" />
-       
-  <style>
-    /* These are the only extra rules you need */
-    #main {
-      background: #ffffff;
-      min-height: 100vh;
-    }
+    <title>Python Programming</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+        
+    <style>
+        #main {
+            background: #ffffff;
+            min-height: 100vh;
+        }
 
-    /* Typewriter effect */
-    h1.type {
-      color: black;
-      font-family: serif;
-      font-weight: 650;
-      border-right: 2px solid #FCC979;
-    }
+        /* Typewriter effect styles */
+        h1.type {
+            color: black;
+            font-family: serif;
+            font-weight: 650;
+            display: inline-block; /* Zorgt dat de cursor strak achter de tekst staat */
+            border-right: 2px solid #FCC979;
+        }
 
-    @keyframes caret { 50% { border-color: transparent; } }
-    h1.type.caret { animation: caret 1s steps(1) infinite; }
-
-    /* Snake Game Styling */
-    #gameCanvas {
-      background: #0b0f1a;
-      border-radius: 12px;
-      display: block;
-      margin: 30px auto;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    }
-
-    .game-container {
-        text-align: center;
-        padding: 50px 0;
-    }
-  </style>
+        @keyframes caret { 50% { border-color: transparent; } }
+        h1.type.caret { animation: caret 1s steps(1) infinite; }
+    </style>
 </head>
 
-<body class="is-preload">
+<body class="is-preload" style="opacity: 0; transition: opacity 0.5s;">
 
-  <header id="header">
-    <div class="inner">
-      <a href="portfolio.html" class="button">Back to projects</a>
+    <header id="header">
+        <div class="inner">
+            <a href="portfolio.html" class="button">Back to projects</a>
+        </div>
+    </header>
+
+    <div id="main">
+        <section id="one">
+            <header class="major">
+                <h1 class="type caret" id="typeTarget"></h1>
+            </header>
+            <p>
+                Built a simple project in Python focusing on clean logic and real-time execution.
+                This project demonstrates my understanding of fundamental programming concepts and 
+                efficient code structure.
+            </p>
+        </section>
     </div>
-  </header>
 
-  <div id="main">
-    
-    <section id="one">
-      <header class="major">
-        <h1 class="type caret" id="typeTarget"></h1>
-      </header>
-      <p>
-        Under construction.
-      </p>
-    
+    <script>
+        // Fade in body wanneer geladen
+        window.addEventListener('load', () => {
+            document.body.style.opacity = "1";
+        });
+
+        // Typewriter logica
+        (function(){
+            const text = "Python programming";
+            const el = document.getElementById('typeTarget');
+            let i = 0;
+
+            function type(){
+                if (el) {
+                    el.textContent = text.slice(0, ++i);
+                    if (i < text.length) {
+                        setTimeout(type, 60);
+                    }
+                    // De 'caret' class blijft staan voor het knipper-effect
+                }
+            }
+            
+            // Start het effect
+            type();
+        })();
+    </script>
+
 </body>
 </html>
