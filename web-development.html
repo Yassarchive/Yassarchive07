@@ -103,74 +103,11 @@
     <div class="project-layout">
       <div class="project-description">
         <p class="reveal">
-          A responsive weather application that retrieves real-time weather data using the <strong>OpenWeather API</strong>. 
-          The app allows users to search for any city and instantly displays current conditions like temperature and location details.
-        </p>
-
-        <h3 class="reveal"><span class="mark"> Key Features</span></h3>
-        <ul class="feature-list reveal">
-          <li><strong>Real-time Data:</strong> Direct integration with OpenWeather API.</li>
-          <li><strong>Dynamic UI:</strong> Interface updates instantly based on search results.</li>
-          <li><strong>Responsive Design:</strong> Fully optimized for mobile, tablet, and desktop.</li>
-          <li><strong>Clean UX:</strong> Minimalist interface focused on speed and usability.</li>
-        </ul>
+          Under Construction </p>
+        
       </div>
-
-      <div class="project-stats reveal">
-        <h4> Tech Stack</h4>
-        <div class="tag-container">
-          <span class="tag">HTML5</span>
-          <span class="tag">CSS3</span>
-          <span class="tag">JavaScript</span>
-          <span class="tag">REST API</span>
-          <span class="tag">GitHub Pages</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="preview-header reveal">
-      <h3>Real-Time Weather Dashboard </h3>
-      <p>Interact with the live app below ↓:</p>
-    </div>
-
-    <div class="iframe-wrapper reveal">
-      <iframe 
-        src="https://yassarchive.github.io/weather-app/" 
-        width="100%" 
-        height="600" 
-        style="border: none;">
-      </iframe>
-    </div>
+   
   </section>
 </main>
-
-  <script>
-    // Fade-in van de pagina als alles geladen is
-    window.addEventListener('load', ()=> document.body.classList.add('ready'));
-
-    // Het typewriter (typemachine) effect voor de titel
-    (function(){
-      const text = "Web development";
-      const el = document.getElementById('typeTarget');
-      let i = 0;
-      function type(){
-        el.textContent = text.slice(0, ++i);
-        if(i < text.length) setTimeout(type, 60);
-        else el.classList.add('caret'); // Blijf de cursor laten knipperen
-      }
-      type();
-    })();
-
-    // IntersectionObserver regelt dat elementen pas verschijnen bij het scrollen
-    const io = new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{
-        if(e.isIntersecting){
-          e.target.classList.add('in');
-          io.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.12 });
-    document.querySelectorAll('.reveal').forEach(el=> io.observe(el));
-  </script>
 </body>
 </html>
