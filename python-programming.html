@@ -20,7 +20,7 @@
         /* Styling voor de 'terug' knop */
         #header .button {
             transition: transform .18s ease, box-shadow .18s ease;
-            border-color: rgba(0, 0, 0, 0.2); /* Iets donkerder voor witte achtergrond */
+            border-color: rgba(0, 0, 0, 0.2);
         }
         #header .button:hover {
             transform: translateY(-2px);
@@ -44,7 +44,7 @@
             background: radial-gradient(circle, rgba(28,42,87,.1), transparent 60%);
         }
 
-        /* Typewriter effect */
+        /* CSS TYPEWRITER */
         h1.type {
             color: var(--text); 
             font-family: "Times New Roman Condensed", serif;
@@ -52,10 +52,22 @@
             display: inline-block;
             white-space: nowrap; 
             overflow: hidden;
-            border-right: 2px solid var(--orange);
+            border-right: 3px solid var(--orange);
+            width: 18ch; /* Exact aantal karakters van "Python Programming" */
+            animation: 
+                typing 2s steps(18, end), 
+                blink-caret 0.75s step-end infinite;
         }
-        @keyframes caret { 50% { border-color: transparent; } }
-        h1.type.caret { animation: caret 1s steps(1) infinite; }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 18ch }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--orange); }
+        }
 
         /* Scroll reveal */
         .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
@@ -72,6 +84,7 @@
         @media (prefers-reduced-motion: reduce) {
             body { transition: none !important; }
             .reveal { transition: none !important; transform: none !important; opacity: 1 !important; }
+            h1.type { animation: none; border-right: none; width: auto; }
         }
     </style>
 </head>
@@ -85,34 +98,16 @@
 
     <main id="main">
         <section id="about" class="section-glow">
-            <h1 class="type caret" id="typeTarget" aria-label="Python Programming."></h1>
+            <h1 class="type" aria-label="Python Programming.">Python Programming</h1>
             <p class="reveal">Under construction</p>
         </section>
     </main>
 
     <script>
-        // Start fade-in
+        // Start fade-in van de pagina
         window.addEventListener('load', () => document.body.classList.add('ready'));
 
-        // Typewriter Effect
-        (function() {
-            const text = "Python Programming";
-            const el = document.getElementById('typeTarget');
-            let i = 0;
-            function type() {
-                if (!el) return;
-                el.textContent = text.slice(0, ++i);
-                if (i < text.length) {
-                    setTimeout(type, 70);
-                } else {
-                    el.classList.add('caret');
-                }
-            }
-            // Kleine vertraging voor een natuurlijker begin na de fade-in
-            setTimeout(type, 500);
-        })();
-
-        // Scroll Reveal Logic
+        // Alleen de IntersectionObserver voor de "reveal" tekst behouden
         const io = new IntersectionObserver((entries) => {
             entries.forEach(e => {
                 if (e.isIntersecting) {
