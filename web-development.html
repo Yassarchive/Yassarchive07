@@ -11,17 +11,16 @@
       --white:#ffffff !important;
       --orange:#FCC979 !important;
       --text:#000000 !important; 
-      --navy: #ffffff; /* Gecorrigeerd naar wit zodat var(--navy) je pagina niet wit-op-wit maakt */
     }
 
     /* Pagina fade-in effect bij het laden */
     body{ opacity:0; transition:opacity .45s ease; background:var(--navy); color:var(--text); }
     body.ready{ opacity:1; }
 
-    /* Styling en hover-effect voor de 'terug' knop */
+    /* Styling voor de 'terug' knop met hover effect */
     #header .button{
       transition: transform .18s ease, box-shadow .18s ease;
-      border-color: rgba(0, 0, 0, 0.2);
+      border-color: rgba(255, 255, 255, 0.5);
     }
     #header .button:hover{
       transform: translateY(-2px);
@@ -34,7 +33,6 @@
     #about.section-glow::after{
       content:"";
       position:absolute; border-radius:50%; filter: blur(90px); pointer-events:none;
-      z-index: -1;
     }
     #about.section-glow::before{
       width:420px; height:420px; top:-140px; right:-140px;
@@ -52,25 +50,42 @@
       font-weight: 650;
       white-space: nowrap; overflow: hidden;
       border-right: 2px solid var(--orange);
-      display: inline-block;
     }
     @keyframes caret { 50% { border-color: transparent; } }
     h1.type.caret { animation: caret 1s steps(1) infinite; }
 
-    /* Scroll reveal */
+    /* Scroll reveal: tekst verschijnt tijdens het scrollen */
     .reveal { opacity:0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
     .reveal.in { opacity:1; transform: none; }
 
-    /* Afstand en layout instellingen */
+    /* Layout instellingen voor leesbaarheid */
     #main{ padding: 2.5rem 1.25rem; }
     #about{ max-width: 900px; margin: 0 auto; }
     #about p{ line-height: 1.8; font-size: 1.05rem; margin: 1rem 0; }
 
-    /* Verwijder standaard template achtergronden */
+    /* Markering voor handgeschreven accenten */
+    .mark {
+      font-family: "Homemade Apple", "Caveat", cursive;
+      color: var(--orange);
+      background: linear-gradient(transparent 60%, rgba(255,122,0,.18) 60%);
+      padding: 0 .15em;
+    }
+
+    /* Verwijder standaard template vormen en achtergronden */
     #about { background: none !important; }
-    #about::before, #about::after { content: none !important; }
+    #about::before,
+    #about::after { content: none !important; }
+
     #main { background: none !important; }
-    #main::before, #main::after { content: none !important; }
+    #main::before,
+    #main::after { content: none !important; }
+
+    /* Instellingen voor gebruikers die minder beweging op het scherm willen */
+    @media (prefers-reduced-motion: reduce){
+      body{ transition:none !important; }
+      .reveal{ transition:none !important; transform:none !important; opacity:1 !important; }
+      h1.type{ border-right: none !important; }
+    }
   </style>
 </head>
 <body>
@@ -83,45 +98,39 @@
 
   <main id="main">
     <section id="about" class="section-glow">
-      <h1 class="type caret" id="typeTarget" aria-label="Web development."></h1>
+      <h1 class="type caret" id="typeTarget" aria-label="C++ programming."></h1>
 
-      <div class="project-layout">
-        <div class="project-description">
-          <p class="reveal">Under Construction</p>
-        </div>
-      </div>
+      <p class="reveal"> Under construction <p/>
     </section>
   </main>
 
   <script>
-    // 1. Maak de pagina zichtbaar (lost het witte scherm op)
-    window.addEventListener('load', () => {
-      document.body.classList.add('ready');
-    });
+    // Fade-in van de pagina zodra alles geladen is
+    window.addEventListener('load', ()=> document.body.classList.add('ready'));
 
-    // 2. Typewriter effect
+    // Het typewriter (typemachine) effect voor de H1 titel
     (function(){
-      const text = "Web development";
+      const text = "Web Development";
       const el = document.getElementById('typeTarget');
       let i = 0;
       function type(){
-        if(!el) return;
         el.textContent = text.slice(0, ++i);
         if(i < text.length) setTimeout(type, 60);
+        else el.classList.add('caret'); // Blijf de cursor laten knipperen
       }
-      setTimeout(type, 300); // Start iets na de fade-in
+      type();
     })();
 
-    // 3. Scroll Reveal voor de tekst
+    // IntersectionObserver zorgt dat paragrafen verschijnen als je ze in beeld scrollt
     const io = new IntersectionObserver((entries)=>{
       entries.forEach(e=>{
         if(e.isIntersecting){
           e.target.classList.add('in');
+          io.unobserve(e.target);
         }
       });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.12 });
     document.querySelectorAll('.reveal').forEach(el=> io.observe(el));
   </script>
-
 </body>
 </html>
