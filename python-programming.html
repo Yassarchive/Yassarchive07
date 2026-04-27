@@ -2,69 +2,45 @@
 <html lang="en">
 <head>
     <title>Python Programming</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="assets/css/main.css" />
     <style>
-        :root { --orange: #FCC979; --text: #000000; }
+        :root { --orange: #FCC979; }
+        
+        /* Geen opacity 0 meer op de body */
+        body { background: #fff; color: #000; margin: 0; }
 
-        /* Pagina setup */
-        body { opacity: 0; transition: opacity .45s ease; background: #fff; color: var(--text); }
-        body.ready { opacity: 1; }
-
-        /* Layout & Glow */
         #main { padding: 4rem 1.25rem; }
         #about { max-width: 900px; margin: 0 auto; position: relative; }
-        #about.section-glow::before {
-            content: ""; position: absolute; border-radius: 50%; filter: blur(90px); z-index: -1;
-            width: 420px; height: 420px; top: -140px; right: -140px;
-            background: radial-gradient(circle, rgba(255,122,0,.15), transparent 60%);
-        }
 
-        /* Typewriter */
+        /* Typewriter blijft hetzelfde */
         h1.type {
-            color: #000000 !important; /* Forceert zwart */
-            font-family: "Times New Roman Condensed", serif;
-            font-weight: 800 !important; /* Maakt de tekst extra dik */
-            display: inline-block; 
-            white-space: nowrap; 
+            color: #000 !important;
+            font-family: serif;
+            font-weight: 800 !important;
+            display: inline-block;
+            white-space: nowrap;
             overflow: hidden;
             border-right: 3px solid var(--orange);
-            width: 19ch;
+            width: 18ch;
             animation: typing 2s steps(18, end), blink 0.75s step-end infinite;
         }
         @keyframes typing { from { width: 0 } to { width: 18ch } }
         @keyframes blink { from, to { border-color: transparent } 50% { border-color: var(--orange) } }
 
-        /* Scroll reveal */
-        .reveal { opacity: 0; transform: translateY(14px); transition: all .6s ease; }
-        .reveal.in { opacity: 1; transform: none; }
-
-        /* Opschonen */
-        #about, #main { background: none !important; }
-        #about::after, #main::after, #about::before, #main::before { content: none; }
+        /* Geen 'reveal' meer nodig, tekst staat direct goed */
+        p { line-height: 1.8; }
     </style>
 </head>
 <body>
-
     <header id="header">
         <div class="inner"><a href="portfolio.html" class="button">Back to projects</a></div>
     </header>
 
     <main id="main">
-        <section id="about" class="section-glow">
+        <section id="about">
             <h1 class="type">Python Programming</h1>
-            <p class="reveal">Under construction</p>
+            <p>Under construction</p>
         </section>
     </main>
-
-    <script>
-        window.addEventListener('load', () => document.body.classList.add('ready'));
-
-        const io = new IntersectionObserver((entries) => {
-            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-    </script>
 </body>
 </html>
